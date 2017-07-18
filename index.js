@@ -26,7 +26,7 @@ app.intent('airportinfo', {
       return true;
     } else {
       var faaHelper = new FAADataHelper();
-      faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {
+      return faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {
         console.log(airportStatus);
         res.say(faaHelper.formatAirportStatus(airportStatus)).send();
       }).catch(function(err) {
@@ -35,7 +35,6 @@ app.intent('airportinfo', {
          //https://github.com/matt-kruse/alexa-app/blob/master/index.js#L171
         res.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
       });
-      return false;
     }
   }
 );
